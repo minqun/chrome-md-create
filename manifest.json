@@ -11,5 +11,17 @@
   },
   "permissions": [
     "storage"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "editor.html",
+        "editor.css",
+        "editor.js",
+        "vendor/easymde.min.css",
+        "vendor/easymde.min.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
