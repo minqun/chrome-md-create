@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Markdown Editor Extension",
+  "version": "1.0.0",
+  "description": "A Markdown editor in a new tab with import, export, and auto-save.",
+  "action": {
+    "default_title": "Open Markdown Editor"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage"
+  ]
+}

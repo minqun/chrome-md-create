@@ -1,0 +1,59 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar-custom {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  gap: 10px;
+}
+
+.toolbar-custom button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.toolbar-custom button:hover {
+  background-color: #0056b3;
+}
+
+#btn-clear {
+  background-color: #dc3545;
+}
+
+#btn-clear:hover {
+  background-color: #c82333;
+}
+
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make EasyMDE take up the full remaining height */
+.editor-container .EasyMDEContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-container .CodeMirror {
+  flex: 1;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
