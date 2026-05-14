@@ -7,12 +7,28 @@ body, html {
   flex-direction: column;
 }
 
+body {
+  --preview-bg: #ffffff;
+  --preview-text: #1f2937;
+  --preview-border: #e5e7eb;
+  --preview-code-bg: #f3f4f6;
+  --preview-blockquote: #6b7280;
+  --preview-link: #2563eb;
+  --preview-font-size: 16px;
+  --preview-line-height: 1.8;
+  --preview-max-width: 860px;
+  --editor-pane-size: 50%;
+  background-color: #f3f4f6;
+}
+
 .toolbar-custom {
   background-color: #f8f9fa;
   padding: 10px 20px;
   border-bottom: 1px solid #e9ecef;
   display: flex;
   gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .toolbar-custom button {
@@ -38,22 +54,231 @@ body, html {
   background-color: #c82333;
 }
 
-.editor-container {
-  flex: 1;
+.settings-panel {
   display: flex;
-  flex-direction: column;
+  gap: 16px;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Make EasyMDE take up the full remaining height */
-.editor-container .EasyMDEContainer {
+.settings-panel label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #374151;
+  font-size: 14px;
+}
+
+.settings-panel select,
+.settings-panel input[type="range"] {
+  cursor: pointer;
+}
+
+.workspace {
   flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.editor-pane {
+  flex: 0 0 var(--editor-pane-size);
+}
+
+.preview-pane {
+  flex: 1 1 auto;
+  border-left: 1px solid #e5e7eb;
+}
+
+.pane-header {
+  padding: 10px 14px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.editor-container {
+  flex: 1;
+  min-height: 0;
+  background-color: #ffffff;
+}
+
+.editor-container .EasyMDEContainer {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .editor-container .CodeMirror {
   flex: 1;
+  height: 100%;
   border-left: none;
   border-right: none;
   border-bottom: none;
+}
+
+.editor-container .CodeMirror-scroll {
+  min-height: 0;
+}
+
+.preview-pane {
+  background-color: var(--preview-bg);
+}
+
+.splitter {
+  width: 10px;
+  flex: 0 0 10px;
+  cursor: col-resize;
+  position: relative;
+  background-color: #f3f4f6;
+}
+
+.splitter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background-color: #d1d5db;
+}
+
+.splitter:hover::before,
+body.is-resizing .splitter::before {
+  background-color: #2563eb;
+}
+
+body.is-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.preview-body {
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+  background-color: var(--preview-bg);
+  color: var(--preview-text);
+  font-size: var(--preview-font-size);
+  line-height: var(--preview-line-height);
+}
+
+.preview-body-inner {
+  max-width: var(--preview-max-width);
+  margin: 0 auto;
+  word-break: break-word;
+}
+
+.preview-body h1,
+.preview-body h2,
+.preview-body h3,
+.preview-body h4,
+.preview-body h5,
+.preview-body h6 {
+  margin: 1.25em 0 0.6em;
+  line-height: 1.3;
+}
+
+.preview-body p,
+.preview-body ul,
+.preview-body ol,
+.preview-body blockquote,
+.preview-body pre,
+.preview-body table {
+  margin: 0 0 1em;
+}
+
+.preview-body a {
+  color: var(--preview-link);
+}
+
+.preview-body blockquote {
+  margin-left: 0;
+  padding-left: 1em;
+  border-left: 4px solid var(--preview-border);
+  color: var(--preview-blockquote);
+}
+
+.preview-body code {
+  background-color: var(--preview-code-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.preview-body pre {
+  background-color: var(--preview-code-bg);
+  border-radius: 8px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.preview-body pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.preview-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.preview-body th,
+.preview-body td {
+  padding: 10px 12px;
+  border: 1px solid var(--preview-border);
+  text-align: left;
+}
+
+.preview-body img {
+  max-width: 100%;
+}
+
+body.theme-dark {
+  --preview-bg: #111827;
+  --preview-text: #e5e7eb;
+  --preview-border: #374151;
+  --preview-code-bg: #1f2937;
+  --preview-blockquote: #9ca3af;
+  --preview-link: #60a5fa;
+}
+
+body.theme-sepia {
+  --preview-bg: #f8f1e3;
+  --preview-text: #4b3b2a;
+  --preview-border: #d6c3a4;
+  --preview-code-bg: #efe3cc;
+  --preview-blockquote: #7a5f42;
+  --preview-link: #9a5c00;
+}
+
+@media (max-width: 960px) {
+  .workspace {
+    flex-direction: column;
+  }
+
+  .editor-pane {
+    flex: 1 1 auto;
+  }
+
+  .preview-pane {
+    border-left: none;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .splitter {
+    display: none;
+  }
 }

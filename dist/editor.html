@@ -11,11 +11,59 @@
     <button id="btn-import">导入文件</button>
     <button id="btn-export">导出文件</button>
     <button id="btn-copy">复制内容</button>
+    <button id="btn-toggle-settings">预览样式</button>
     <button id="btn-clear">清空缓存</button>
     <input type="file" id="file-input" accept=".md,.txt" style="display: none;" />
   </div>
-  <div class="editor-container">
-    <textarea id="mde-editor"></textarea>
+  <div class="settings-panel" id="settings-panel" hidden>
+    <label>
+      主题
+      <select id="preview-theme">
+        <option value="light">浅色</option>
+        <option value="sepia">护眼</option>
+        <option value="dark">深色</option>
+      </select>
+    </label>
+    <label>
+      字号
+      <input id="preview-font-size" type="range" min="14" max="24" step="1" value="16" />
+      <span id="font-size-value">16px</span>
+    </label>
+    <label>
+      行高
+      <select id="preview-line-height">
+        <option value="1.6">1.6</option>
+        <option value="1.8">1.8</option>
+        <option value="2">2.0</option>
+      </select>
+    </label>
+    <label>
+      内容宽度
+      <select id="preview-width">
+        <option value="720px">紧凑</option>
+        <option value="860px">标准</option>
+        <option value="100%">铺满</option>
+      </select>
+    </label>
+  </div>
+  <div class="workspace">
+    <div class="pane editor-pane">
+      <div class="pane-header">编辑区</div>
+      <div class="editor-container">
+        <textarea id="mde-editor"></textarea>
+      </div>
+    </div>
+    <div
+      class="splitter"
+      id="splitter"
+      role="separator"
+      aria-label="拖拽调整分栏宽度"
+      aria-orientation="vertical"
+    ></div>
+    <div class="pane preview-pane">
+      <div class="pane-header">预览区</div>
+      <div class="preview-body" id="preview-body"></div>
+    </div>
   </div>
   <script src="vendor/easymde.min.js"></script>
   <script src="editor.js"></script>
